@@ -1,3 +1,10 @@
+# Modify the Scraper's Rule and Explain What I Did
+I essentially scraped:
+- Scrape the top headline from the “Featured”, “News”, “Sports”, “Opinion” section on the homepage. Look for a specific CSS class or HTML structure unique to that section.
+- Navigate to the “Multimedia” page ( https://www.thedp.com/multimedia) and scrape the headline of the latest video or photo story.
+
+I think these headlines are the most important and useful for users because they are the ones that "stand-out" in each section, and as a reader, it will be extremely helpful if I can see the most important information in each section everyday before diving into reading the news.
+
 # Basic Git Scraper Template
 
 This template provides a starting point for **git scraping**—the technique of scraping data from websites and automatically committing it to a Git repository using workflows, [coined by Simon Willison](https://simonwillison.net/2020/Oct/9/git-scraping/).
