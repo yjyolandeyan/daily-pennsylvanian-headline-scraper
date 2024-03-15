@@ -20,28 +20,17 @@ def scrape_data_point():
     Returns:
         str: The headline text if found, otherwise an empty string.
     """
-    # req = requests.get("https://www.thedp.com")
-    # loguru.logger.info(f"Request URL: {req.url}")
-    # loguru.logger.info(f"Request status code: {req.status_code}")
-
-    # if req.ok:
-    #     soup = bs4.BeautifulSoup(req.text, "html.parser")
-    #     target_element = soup.find("a", class_="frontpage-link")
-    #     data_point = "" if target_element is None else target_element.text
-    #     loguru.logger.info(f"Data point: {data_point}")
-    #     return data_point
-
     req = requests.get("https://www.thedp.com")
     loguru.logger.info(f"Request URL: {req.url}")
     loguru.logger.info(f"Request status code: {req.status_code}")
-    headlines = {'Main': '', 'News': '', 'Sports': '', 'Opinion': '', 'Multimedia': ''}
+    headlines = {'Featured': '', 'News': '', 'Sports': '', 'Opinion': '', 'Multimedia': ''}
     
     if req.ok:
         soup = bs4.BeautifulSoup(req.text, "html.parser")
-        # Scrape the main headline
+        # Scrape the featured headline
         main_headline_element = soup.find("a", class_="frontpage-link")
         if main_headline_element:
-            headlines['Main'] = main_headline_element.get_text(strip=True)
+            headlines['Featured'] = main_headline_element.get_text(strip=True)
             
         # Scrape the news headline
             news_headline_element = soup.select_one("div.col-sm-6.section-news a.frontpage-link")
