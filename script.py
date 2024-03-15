@@ -51,7 +51,7 @@ def scrape_data_point():
             col_sm_6_elements = soup.find_all("div.col-sm-6")
             for div in col_sm_6_elements:
                 h3 = div.find("h3")
-                if h3 and "Sports" in h3.get_text(strip=True).lower(): 
+                if h3 and "Sports" in h3.get_text(strip=True): 
                     sports_headline_element = div.find("a", class_="frontpage-link")
                     if sports_headline_element:
                         headlines['Sports'] = sports_headline_element.get_text(strip=True)
