@@ -34,27 +34,27 @@ def scrape_data_point():
     req = requests.get("https://www.thedp.com")
     loguru.logger.info(f"Request URL: {req.url}")
     loguru.logger.info(f"Request status code: {req.status_code}")
-    headlines = {'main': '', 'news': '', 'sports': ''}
+    headlines = {'Main': '', 'News': '', 'Sports': ''}
     
     if req.ok:
         soup = bs4.BeautifulSoup(req.text, "html.parser")
         # Scrape the main headline
         main_headline_element = soup.find("a", class_="frontpage-link")
         if main_headline_element:
-            headlines['main'] = main_headline_element.get_text(strip=True)
+            headlines['Main'] = main_headline_element.get_text(strip=True)
         # Scrape the news headline
             news_headline_element = soup.select_one("div.col-sm-6.section-news a.frontpage-link")
             if news_headline_element:
-                headlines['news'] = news_headline_element.get_text(strip=True)
+                headlines['News'] = news_headline_element.get_text(strip=True)
 
             # Scrape the sports headline
-            sports_headline_element = soup.find_all("div.col-sm-6")
+            col_sm_6_elements = soup.find_all("div.col-sm-6")
             for div in col_sm_6_elements:
                 h3 = div.find("h3")
                 if h3 and "Sports" in h3.get_text(strip=True).lower(): 
                     sports_headline_element = div.find("a", class_="frontpage-link")
                     if sports_headline_element:
-                        headlines['sports'] = sports_headline_element.get_text(strip=True)
+                        headlines['Sports'] = sports_headline_element.get_text(strip=True)
                         break
             loguru.logger.info(f"Scraped headlines: {headlines}")
 
