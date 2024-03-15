@@ -48,10 +48,14 @@ def scrape_data_point():
                 headlines['news'] = news_headline_element.get_text(strip=True)
 
             # Scrape the sports headline
-            sports_headline_element = soup.select_one("div.col-sm-6 div.article-summary a.frontpage-link medium-link font-regular")
-            if sports_headline_element:
-                headlines['sports'] = sports_headline_element.get_text(strip=True)
-
+            sports_headline_element = soup.find_all("div.col-sm-6")
+            for div in col_sm_6_elements:
+                h3 = div.find("h3")
+                if h3 and "sports" in h3.get_text(strip=True).lower():  # This looks for 'sports' in the h3 text
+                    sports_headline_element = div.find("a", class_="frontpage-link")
+                    if sports_headline_element:
+                        headlines['sports'] = sports_headline_element.get_text(strip=True)
+                        break
             loguru.logger.info(f"Scraped headlines: {headlines}")
 
         # target_element = soup.find("a", class_=["frontpage-link medium-link newstop"])
