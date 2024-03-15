@@ -43,7 +43,7 @@ def scrape_data_point():
     #     return f"Top headline from News is: {headline}"
 
     headlines = {'main': '', 'news': '', 'sports': ''}
-    req = requests.get(url)
+    req = requests.get("https://www.thedp.com")
     loguru.logger.info(f"Request URL: {req.url}")
     loguru.logger.info(f"Request status code: {req.status_code}")
 
