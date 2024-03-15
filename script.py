@@ -48,7 +48,7 @@ def scrape_data_point():
                 headlines['news'] = news_headline_element.get_text(strip=True)
 
             # Scrape the sports headline
-            sports_headline_element = soup.select_one("div.col-sm-6 div.article-summary a.frontpage-link")
+            sports_headline_element = soup.select_one("div.col-sm-6 div.article-summary a.frontpage-link medium-link font-regular")
             if sports_headline_element:
                 headlines['sports'] = sports_headline_element.get_text(strip=True)
 
