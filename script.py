@@ -63,9 +63,9 @@ def scrape_data_point():
                 headlines['Opinion'] = opinion_headline_element.get_text(strip=True)
 
         # Scrape the multimedia headline
-        multimedia_headline_element = soup.select_one("div.section-multimedia h3.frontpage-section a.medium-link")
+        multimedia_headline_element = soup.select_one("div.section-multimedia div.row div.col-sm-9 a.medium-link")
             if multimedia_headline_element:
-                headlines['Multimedia'] = multimedia_headline_element.get_text(strip=True)
+                headlines['multimedia'] = multimedia_headline_element.get_text(strip=True)
         
         loguru.logger.info(f"Scraped headlines: {headlines}")
     return headlines
