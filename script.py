@@ -48,14 +48,22 @@ def scrape_data_point():
             if news_headline_element:
                 headlines['News'] = news_headline_element.get_text(strip=True)
 
-            # Scrape the sports headline
-            sports_section = soup.find('h3', class_='frontpage-section', text='Sports')
-            if sports_section:
-                sports_headline_element = sports_section.find_next_sibling('div', class_='article-summary').find('a', class_='frontpage-link')
-                if sports_headline_element:
-                    headlines['Sports'] = sports_headline_element.get_text(strip=True)
-                        
-            loguru.logger.info(f"Scraped headlines: {headlines}")
+        # Scrape the sports headline
+        sports_section = soup.find('h3', class_='frontpage-section', text='Sports')
+        if sports_section:
+            sports_headline_element = sports_section.find_next_sibling('div', class_='article-summary').find('a', class_='frontpage-link')
+            if sports_headline_element:
+                headlines['Sports'] = sports_headline_element.get_text(strip=True)
+                    
+        loguru.logger.info(f"Scraped headlines: {headlines}")
+
+        # Scrape the opinion headline
+        opinion_section = soup.find('h3', class_='frontpage-section', text='Opinion')
+        if opinion_section:
+            opinion_headline_element = opinion_section.find_next_sibling('div', class_='article-summary').find('a', class_='frontpage-link')
+            if opinion_headline_element:
+                headlines['Sports'] = opinion_headline_element.get_text(strip=True)
+        
 
         # target_element = soup.find("a", class_=["frontpage-link medium-link newstop"])
         # headline = "" if target_element is None else target_element.text.strip()
