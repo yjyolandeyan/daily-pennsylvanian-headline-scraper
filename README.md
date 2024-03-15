@@ -4,6 +4,9 @@ I essentially scraped:
 - Navigate to the “Multimedia” page ( https://www.thedp.com/multimedia) and scrape the headline of the latest video or photo story.
 
 I think these headlines are the most important and useful for users because they are the ones that "stand-out" in each section, and as a reader, it will be extremely helpful if I can see the most important information in each section everyday before diving into reading the news.
+<img width="965" alt="Screenshot 2024-03-15 at 7 46 20 PM" src="https://github.com/yjyolandeyan/daily-pennsylvanian-headline-scraper/assets/158221697/9e4574fb-44c4-4baa-a29c-7e3ca8f150a3">
+
+I modified the function scrape_data_point so that it can scrape all the headlines interested in the same function instead of calling multiple functions for it. I also made sure that each headline is noted. That is, it will be in the format of "Section headline: [headline]" as demonstarted in the screenshot. 
 
 # Basic Git Scraper Template
 
