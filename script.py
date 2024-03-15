@@ -31,21 +31,16 @@ def scrape_data_point():
     #     loguru.logger.info(f"Data point: {data_point}")
     #     return data_point
 
-    try:
-        req = requests.get("https://www.thedp.com")
-        loguru.logger.info(f"Request URL: {req.url}")
-        loguru.logger.info(f"Request status code: {req.status_code}")
+    req = requests.get("https://www.thedp.com")
+    loguru.logger.info(f"Request URL: {req.url}")
+    loguru.logger.info(f"Request status code: {req.status_code}")
 
-        if req.ok:
-            soup = bs4.BeautifulSoup(req.text, "html.parser")
-            # Assuming the provided structure is consistent for headlines
-            target_element = soup.find("a", class_=["frontpage-link", "medium-link", "newstop"])
-            headline = "" if target_element is None else target_element.text.strip()
-            loguru.logger.info(f"Headline: {headline}")
-            return f"Top headline from News is: {headline}"
-    except Exception as e:
-        loguru.logger.error(f"Failed to scrape data point: {e}")
-        return ""
+    if req.ok:
+        soup = bs4.BeautifulSoup(req.text, "html.parser")
+        target_element = soup.find("a", class_=["frontpage-link medium-link newstop"])
+        headline = "" if target_element is None else target_element.text.strip()
+        loguru.logger.info(f"Headline: {headline}")
+        return f"Top headline from News is: {headline}"
 
 
 if __name__ == "__main__":
