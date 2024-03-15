@@ -63,6 +63,13 @@ def scrape_data_point():
                 headlines['Opinion'] = opinion_headline_element.get_text(strip=True)
 
         # Scrape the multimedia headline
+        req_media = requests.get("https://www.thedp.com/multimedia")
+        loguru.logger.info(f"Request URL: {req_media.url}")
+        loguru.logger.info(f"Request status code: {req_media.status_code}")
+        soup = bs4.BeautifulSoup(req_media.text, "html.parser")
+        multimedia_element = soup.find("a", class_="medium-link")
+        if multimedia_element:
+            headlines['Multimedia'] = multimedia_element.get_text(strip=True)
 
         
         loguru.logger.info(f"Scraped headlines: {headlines}")
