@@ -34,7 +34,7 @@ def scrape_data_point():
     req = requests.get("https://www.thedp.com")
     loguru.logger.info(f"Request URL: {req.url}")
     loguru.logger.info(f"Request status code: {req.status_code}")
-    headlines = {'Main': '', 'News': '', 'Sports': ''}
+    headlines = {'Main': '', 'News': '', 'Sports': '', 'Opinion': ''}
     
     if req.ok:
         soup = bs4.BeautifulSoup(req.text, "html.parser")
@@ -62,7 +62,7 @@ def scrape_data_point():
         if opinion_section:
             opinion_headline_element = opinion_section.find_next_sibling('div', class_='article-summary').find('a', class_='frontpage-link')
             if opinion_headline_element:
-                headlines['Sports'] = opinion_headline_element.get_text(strip=True)
+                headlines['Opinion'] = opinion_headline_element.get_text(strip=True)
         
 
         # target_element = soup.find("a", class_=["frontpage-link medium-link newstop"])
