@@ -63,7 +63,7 @@ def scrape_data_point():
                 headlines['Opinion'] = opinion_headline_element.get_text(strip=True)
 
         # Scrape the multimedia headline
-        multimedia_headline_element = soup.select_one("div.section-multimedia h3.frontpage-section + div.row a.medium-link")
+        multimedia_headline_element = soup.select_one("div.section-multimedia h3.frontpage-section a.medium-link")
             if multimedia_headline_element:
                 headlines['Multimedia'] = multimedia_headline_element.get_text(strip=True)
         
