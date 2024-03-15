@@ -31,16 +31,43 @@ def scrape_data_point():
     #     loguru.logger.info(f"Data point: {data_point}")
     #     return data_point
 
-    req = requests.get("https://www.thedp.com")
+    # req = requests.get("https://www.thedp.com")
+    # loguru.logger.info(f"Request URL: {req.url}")
+    # loguru.logger.info(f"Request status code: {req.status_code}")
+
+    # if req.ok:
+    #     soup = bs4.BeautifulSoup(req.text, "html.parser")
+    #     target_element = soup.find("a", class_=["frontpage-link medium-link newstop"])
+    #     headline = "" if target_element is None else target_element.text.strip()
+    #     loguru.logger.info(f"Headline: {headline}")
+    #     return f"Top headline from News is: {headline}"
+
+    headlines = {'main': '', 'news': '', 'sports': ''}
+    req = requests.get(url)
     loguru.logger.info(f"Request URL: {req.url}")
     loguru.logger.info(f"Request status code: {req.status_code}")
 
     if req.ok:
         soup = bs4.BeautifulSoup(req.text, "html.parser")
-        target_element = soup.find("a", class_=["frontpage-link medium-link newstop"])
-        headline = "" if target_element is None else target_element.text.strip()
-        loguru.logger.info(f"Headline: {headline}")
-        return f"Top headline from News is: {headline}"
+
+        # Scrape the main headline
+        main_headline_element = soup.find("a", class_="frontpage-link")
+        if main_headline_element:
+            headlines['main'] = main_headline_element.get_text(strip=True)
+
+        # Scrape the news headline
+        news_headline_element = soup.find("div", class_="section-news").find("a", class_="frontpage-link")
+        if news_headline_element:
+            headlines['news'] = news_headline_element.get_text(strip=True)
+
+        # Scrape the sports headline
+        sports_headline_element = soup.find("div", class_="section-sports").find("a", class_="frontpage-link")
+        if sports_headline_element:
+            headlines['sports'] = sports_headline_element.get_text(strip=True)
+
+        loguru.logger.info(f"Headlines: {headlines}")
+            
+        return headlines
 
 
 if __name__ == "__main__":
