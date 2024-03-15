@@ -6,7 +6,7 @@ I essentially scraped:
 I think these headlines are the most important and useful for users because they are the ones that "stand-out" in each section, and as a reader, it will be extremely helpful if I can see the most important information in each section everyday before diving into reading the news.
 <img width="965" alt="Screenshot 2024-03-15 at 7 46 20 PM" src="https://github.com/yjyolandeyan/daily-pennsylvanian-headline-scraper/assets/158221697/9e4574fb-44c4-4baa-a29c-7e3ca8f150a3">
 
-I modified the function scrape_data_point so that it can scrape all the headlines interested in the same function instead of calling multiple functions for it. I also made sure that each headline is noted. That is, it will be in the format of "Section headline: [headline]" as demonstarted in the screenshot. 
+I modified the function scrape_data_point so that it can scrape all the headlines interested in the same function instead of calling multiple functions for it. I also made sure that each headline is noted. That is, it will be in the format of "Section: [headline]" as demonstarted in the screenshot. The general logic of scraping is to find the section (under div.) and then use either select_one or find_all depending if there exist another headline with the same HTML hierarchy, and then finding a nested tag (can be h3 or div, for examp;e) with the class 'xxx-section' (i.e. 'frontpage-section'). Lastly, use the a. tag to find the text of the headline. 
 
 # Basic Git Scraper Template
 
