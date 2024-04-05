@@ -3,14 +3,14 @@
 # JSON file that tracks headlines over time.
 # """
 
-# import os
-# import sys
+import os
+import sys
 
-# import daily_event_monitor
+import daily_event_monitor
 
-# import bs4
-# import requests
-# import loguru
+import bs4
+import requests
+import loguru
 
 
 # def scrape_data_point():
