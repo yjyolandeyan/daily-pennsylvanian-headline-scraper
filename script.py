@@ -61,8 +61,8 @@ def scrape_data_point():
             headlines['Multimedia'] = multimedia_element.get_text(strip=True)
 
         
-        loguru.logger.info(f"Scraped headlines: {headlines}")
-    return headlines
+    #     loguru.logger.info(f"Scraped headlines: {headlines}")
+    # return headlines
 
 if __name__ == "__main__":
 
