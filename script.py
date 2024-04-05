@@ -23,33 +23,33 @@ def scrape_data_point():
     req = requests.get("https://www.thedp.com")
     loguru.logger.info(f"Request URL: {req.url}")
     loguru.logger.info(f"Request status code: {req.status_code}")
-    headlines = {'Featured': '', 'News': '', 'Sports': '', 'Opinion': '', 'Multimedia': ''}
+    # headlines = {'Featured': '', 'News': '', 'Sports': '', 'Opinion': '', 'Multimedia': ''}
     
     if req.ok:
         soup = bs4.BeautifulSoup(req.text, "html.parser")
         # Scrape the featured headline
         main_headline_element = soup.find("a", class_="frontpage-link")
         if main_headline_element:
-            headlines['Featured'] = main_headline_element.get_text(strip=True)
+            # headlines['Featured'] = main_headline_element.get_text(strip=True)
             
         # Scrape the news headline
             news_headline_element = soup.select_one("div.col-sm-6.section-news a.frontpage-link")
             if news_headline_element:
-                headlines['News'] = news_headline_element.get_text(strip=True)
+                # headlines['News'] = news_headline_element.get_text(strip=True)
 
         # Scrape the sports headline
         sports_section = soup.find('h3', class_='frontpage-section', text='Sports')
         if sports_section:
             sports_headline_element = sports_section.find_next_sibling('div', class_='article-summary').find('a', class_='frontpage-link')
             if sports_headline_element:
-                headlines['Sports'] = sports_headline_element.get_text(strip=True)
+                # headlines['Sports'] = sports_headline_element.get_text(strip=True)
                     
         # Scrape the opinion headline
         opinion_section = soup.find('h3', class_='frontpage-section', text='Opinion')
         if opinion_section:
             opinion_headline_element = opinion_section.find_next_sibling('div', class_='article-summary').find('a', class_='frontpage-link')
             if opinion_headline_element:
-                headlines['Opinion'] = opinion_headline_element.get_text(strip=True)
+                # headlines['Opinion'] = opinion_headline_element.get_text(strip=True)
 
         # Scrape the multimedia headline
         req_media = requests.get("https://www.thedp.com/multimedia")
@@ -57,8 +57,8 @@ def scrape_data_point():
         loguru.logger.info(f"Request status code: {req_media.status_code}")
         soup = bs4.BeautifulSoup(req_media.text, "html.parser")
         multimedia_element = soup.find("a", class_="medium-link")
-        if multimedia_element:
-            headlines['Multimedia'] = multimedia_element.get_text(strip=True)
+        # if multimedia_element:
+        #     headlines['Multimedia'] = multimedia_element.get_text(strip=True)
 
         
     #     loguru.logger.info(f"Scraped headlines: {headlines}")
