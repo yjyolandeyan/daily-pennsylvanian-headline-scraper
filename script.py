@@ -13,13 +13,13 @@ import requests
 import loguru
 
 
-# def scrape_data_point():
-#     """
-#     Scrapes the main headline from The Daily Pennsylvanian home page.
+def scrape_data_point():
+    """
+    Scrapes the main headline from The Daily Pennsylvanian home page.
 
-#     Returns:
-#         str: The headline text if found, otherwise an empty string.
-#     """
+    Returns:
+        str: The headline text if found, otherwise an empty string.
+    """
     req = requests.get("https://www.thedp.com")
     loguru.logger.info(f"Request URL: {req.url}")
     loguru.logger.info(f"Request status code: {req.status_code}")
